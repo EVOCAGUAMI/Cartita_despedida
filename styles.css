@@ -1,0 +1,352 @@
+/* ============================================================
+   STYLES.CSS — ESTILOS GLOBALES DEL SITIO
+   Modifica las variables de color en :root para cambiar
+   toda la paleta del sitio desde un solo lugar.
+   ============================================================ */
+
+/* ──────────────────────────────────────────────
+   IMPORTAR TIPOGRAFIAS DESDE GOOGLE FONTS
+   ────────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Infant:ital,wght@0,300;0,400;1,300;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&display=swap');
+
+/* ──────────────────────────────────────────────
+   VARIABLES DE COLOR — MODIFICAR AQUI
+   ────────────────────────────────────────────── */
+:root {
+  /* FONDO GENERAL */
+  --color-fondo: #F5EAD5;
+
+  /* ENCABEZADO */
+  --color-encabezado-fondo: #D9BFA0;
+  --color-encabezado-texto: #3D2B1F;
+
+  /* MENU NAVEGACION */
+  --color-menu-fondo: #C8A882;
+  --color-menu-hover: #B08F68;
+  --color-menu-activo: #8B6845;
+  --color-menu-texto: #3D2B1F;
+  --color-menu-texto-hover: #FFFFFF;
+
+  /* CUERPO */
+  --color-cuerpo-fondo: #F5EAD5;
+  --color-texto-principal: #3D2B1F;
+  --color-texto-parrafo: #5C4030;
+
+  /* MARCOS */
+  --color-marco-borde: #C8A882;
+  --color-marco-fondo: #EDE0CB;
+  --color-marco-sombra: rgba(139, 104, 69, 0.15);
+
+  /* LINEA DECORATIVA */
+  --color-linea-decorativa: #B08F68;
+
+  /* TIPOGRAFIAS */
+  --fuente-titulo: 'Cormorant Infant', Georgia, serif;
+  --fuente-parrafo: 'Lora', Georgia, serif;
+}
+
+/* ──────────────────────────────────────────────
+   RESET Y BASE (MODIFICADO)
+   ────────────────────────────────────────────── */
+body {
+  margin: 0;
+  background-color: var(--color-fondo);
+  color: var(--color-texto-principal);
+  font-family: var(--fuente-parrafo);
+  line-height: 0.3;
+  
+  /* 1. Usamos Flexbox vertical para todo el documento */
+  display: flex;
+  flex-direction: column;
+  
+  /* 2. Aseguramos que el cuerpo ocupe como mínimo el 100% de la altura de la pantalla */
+  min-height: 100vh;
+}
+
+/* ──────────────────────────────────────────────
+   ENCABEZADO
+   ────────────────────────────────────────────── */
+.encabezado {
+  background-color: var(--color-encabezado-fondo);
+  color: var(--color-encabezado-texto);
+  text-align: center;
+  padding: 1.5rem 2rem 1rem;
+  border-bottom: 2px solid var(--color-marco-borde);
+  width: 100%;
+}
+
+.encabezado__nombre-sitio {
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 2.4rem;
+  letter-spacing: 0.04em;
+}
+
+/* ──────────────────────────────────────────────
+   BARRA DEL BOTON MENU
+   Franja visible siempre que contiene el botón
+   ────────────────────────────────────────────── */
+.menu-barra {
+  background-color: var(--color-menu-activo);
+  display: flex;
+  align-items: center;
+  padding: 0 1rem;
+  border-bottom: 2px solid var(--color-menu-hover);
+  width: 100%;
+}
+
+/* ──────────────────────────────────────────────
+   BOTON MENU — siempre visible, activa el panel
+   ────────────────────────────────────────────── */
+.menu__boton {
+  background: transparent;
+  border: none;
+  color: var(--color-menu-texto-hover);
+  font-family: var(--fuente-parrafo);
+  font-size: 0.9rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0.75rem 1.2rem 0.75rem 0.4rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: opacity 0.2s;
+  flex-shrink: 0;
+}
+
+.menu__boton:hover { opacity: 0.75; }
+
+/* Icono hamburguesa hecho con CSS — sin emojis */
+.menu__boton::before {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 2px;
+  background: currentColor;
+  box-shadow: 0 5px 0 currentColor, 0 10px 0 currentColor;
+  transition: box-shadow 0.2s;
+  flex-shrink: 0;
+}
+
+/* Cuando el menú está abierto cambia a "X" */
+.menu__boton.abierto::before {
+  box-shadow: none;
+  background: transparent;
+  position: relative;
+}
+
+.menu__boton.abierto::before {
+  background: currentColor;
+  transform: rotate(45deg);
+  box-shadow: 0 0 0 transparent;
+  position: relative;
+}
+
+/* ──────────────────────────────────────────────
+   PANEL DEL MENU — oculto por defecto
+   ────────────────────────────────────────────── */
+.menu {
+  background-color: var(--color-menu-fondo);
+  border-bottom: 3px solid var(--color-menu-activo);
+  overflow: hidden;
+
+  /* Animación de apertura/cierre */
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.35s ease, opacity 0.3s ease;
+}
+
+/* Clase que activa JS para mostrar el menú */
+.menu.abierto {
+  max-height: 200px; /* suficiente para mostrar los botones */
+  opacity: 1;
+}
+
+/* ──────────────────────────────────────────────
+   LISTA DE NAVEGACION — horizontal, sin viñetas
+   ────────────────────────────────────────────── */
+.menu__lista {
+  list-style: none;          /* elimina viñetas */
+  display: flex;             /* fila horizontal */
+  width: 100%;               /* ocupa todo el ancho */
+}
+
+.menu__lista li {
+  flex: 1;                   /* cada item ocupa partes iguales */
+}
+
+/* ──────────────────────────────────────────────
+   BOTONES DE NAVEGACION
+   ────────────────────────────────────────────── */
+.menu__lista li a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;               /* ocupa todo el ancho del li */
+  padding: 0.95rem 0.5rem;
+  color: var(--color-menu-texto);
+  text-decoration: none;
+  font-family: var(--fuente-parrafo);
+  font-size: 0.88rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  border-right: 1px solid var(--color-menu-activo);
+  transition: background-color 0.22s, color 0.22s;
+
+  /* Apariencia de botón */
+  background-color: var(--color-menu-fondo);
+  border-radius: 0;
+}
+
+.menu__lista li:last-child a {
+  border-right: none;       /* quita borde del último botón */
+}
+
+.menu__lista li a:hover,
+.menu__lista li a.activo {
+  background-color: var(--color-menu-activo);
+  color: var(--color-menu-texto-hover);
+}
+
+/* ──────────────────────────────────────────────
+   CUERPO PRINCIPAL (MODIFICADO)
+   ────────────────────────────────────────────── */
+.cuerpo {
+  background-color: var(--color-cuerpo-fondo);
+  max-width: 1100px;
+  width: 100%;             /* Asegura que tome todo el ancho necesario */
+  margin: 0 auto;
+  padding: 3rem 2rem 5rem;
+  
+  /* 3. Con flex-grow: 1, este contenedor se empuja y crece 
+     para ocupar todo el espacio libre entre el header y el footer */
+  flex: 1 0 auto;
+}
+
+/* ──────────────────────────────────────────────
+   TITULOS DE PAGINA
+   ────────────────────────────────────────────── */
+.titulo-pagina {
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 3.4rem;
+  color: var(--color-texto-principal);
+  text-align: center;
+  margin-bottom: 0.6rem;
+  line-height: 1.2;
+}
+
+.titulo-pagina::after {
+  content: '';
+  display: block;
+  width: 80px;
+  height: 2px;
+  background: var(--color-linea-decorativa);
+  margin: 0.8rem auto 2.5rem;
+  border-radius: 2px;
+}
+
+/* ──────────────────────────────────────────────
+   PARRAFOS
+   ────────────────────────────────────────────── */
+.parrafo-contenido {
+  font-family: var(--fuente-parrafo);
+  font-size: 1.05rem;
+  line-height: 1.95;
+  color: var(--color-texto-parrafo);
+  max-width: 680px;
+  margin: 0 auto;
+  font-weight: 400;
+}
+
+.parrafo-contenido p + p { margin-top: 1.4rem; }
+
+/* ──────────────────────────────────────────────
+   MARCOS / IMAGENES
+   ────────────────────────────────────────────── */
+.marco-imagen {
+  border: 2px solid var(--color-marco-borde);
+  background-color: var(--color-marco-fondo);
+  box-shadow: 6px 6px 18px var(--color-marco-sombra);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.marco-imagen img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Marcos para stickers */
+.marco-sticker {
+  border: 2px dashed var(--color-marco-borde);
+  background-color: var(--color-marco-fondo);
+  box-shadow: 4px 4px 14px var(--color-marco-sombra);
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  gap: 0.6rem;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.marco-sticker:hover {
+  transform: translateY(-4px) rotate(1deg);
+  box-shadow: 6px 10px 22px var(--color-marco-sombra);
+}
+
+.marco-sticker img {
+  max-width: 100%;
+  max-height: 160px;
+  object-fit: contain;
+}
+
+.marco-sticker .sticker-texto {
+  font-family: var(--fuente-titulo);
+  font-style: italic;
+  font-size: 0.9rem;
+  color: var(--color-menu-activo);
+  text-align: center;
+}
+
+/* ──────────────────────────────────────────────
+   PIE DE PAGINA (MODIFICADO)
+   ────────────────────────────────────────────── */
+.pie {
+  text-align: center;
+  padding: 1.5rem;
+  background-color: var(--color-encabezado-fondo);
+  border-top: 1px solid var(--color-marco-borde);
+  font-family: var(--fuente-parrafo);
+  font-size: 0.8rem;
+  color: var(--color-texto-parrafo);
+  font-style: italic;
+
+  /* 4. flex-shrink: 0 evita que el pie de página se aplaste o deforme */
+  flex-shrink: 0;
+  
+  /* 5. Ancho completo por si acaso */
+  width: 100%;
+}
+
+/* ──────────────────────────────────────────────
+   RESPONSIVE — pantallas pequenas
+   ────────────────────────────────────────────── */
+@media (max-width: 600px) {
+  .menu__lista li a {
+    font-size: 0.75rem;
+    padding: 0.85rem 0.2rem;
+    letter-spacing: 0.04em;
+  }
+
+  .titulo-pagina     { font-size: 2.2rem; }
+  .encabezado__nombre-sitio { font-size: 1.6rem; }
+}
