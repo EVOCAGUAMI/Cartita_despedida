@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Por que te ame</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       ENCABEZADO
+       ═══════════════════════════════════════ -->
+  <header class="encabezado">
+    <h1 class="encabezado__nombre-sitio">Nombre del Sitio</h1>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       BARRA DEL BOTON MENU
+       ═══════════════════════════════════════ -->
+  <div class="menu-barra">
+    <button class="menu__boton" id="botonMenu" aria-expanded="false" aria-controls="panelMenu">
+      Menu
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PANEL DEL MENU
+       ═══════════════════════════════════════ -->
+  <nav class="menu" id="panelMenu" role="navigation" aria-label="Navegacion principal">
+    <ul class="menu__lista">
+      <li><a href="index.html">Inicio</a></li>
+      <!-- "activo" marca la pagina actual -->
+      <li><a href="porque.html" class="activo">Por que te ame</a></li>
+      <li><a href="perdon.html">Perdon</a></li>
+      <li><a href="explicaciones.html">Explicaciones</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       CUERPO
+       ═══════════════════════════════════════ -->
+  <main class="cuerpo">
+
+    <!-- CAMBIA EL TITULO AQUI -->
+    <h2 class="titulo-pagina">Por qué te amé?</h2>
+
+    <!--
+      DISENO: STICKERS A LOS LADOS, PARRAFO AL CENTRO
+      Cuadricula de 3 columnas: stickers | texto | stickers
+    -->
+    <div style="
+      display: grid;
+      grid-template-columns: 180px 1fr 180px;
+      gap: 2rem;
+      align-items: start;
+    ">
+
+      <!-- COLUMNA IZQUIERDA — stickers / simbolos -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem; padding-top: 1rem;">
+
+        <!-- STICKER 1 — reemplaza el src con tu PNG sin fondo -->
+        <div class="marco-sticker">
+          <img src="imagenes/IMG_5278.jpg" alt="Sticker 1" />
+          <!-- Texto opcional bajo el sticker -->
+          <span class="sticker-texto">Salidita</span>
+        </div>
+
+        <!-- STICKER 3 -->
+        <div class="marco-sticker">
+          <img src="imagenes/NEA.png" alt="Sticker 3" />
+          <span class="sticker-texto"><3</span>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA CENTRAL — parrafo ~450 palabras -->
+      <div class="parrafo-contenido" style="padding: 0.5rem 0;">
+        <!-- CAMBIA EL TEXTO AQUI -->
+        <p>
+          Siempre que me hiciste esta pregunta no sabía qué contestar; me cuesta mucho tiempo y energía procesar mis sentimientos.
+          Hoy por hoy es algo que tengo que detenerme a pensar, y solo puedo llegar a la conclusión de que era el sentimiento de tranquilidad,
+          de calidez y de luz que había cuando estábamos juntos. 
+        </p>
+        <p>
+          La poca o mucha motivación que generabas en mí también ayudó a esto. No te puedo dar un día u hora exacta de cuándo me empecé 
+          a sentir así. Solo sé que en algún momento se volvió normal y era muy bonito. Poder compartir tiempo, espacio y sentimientos contigo se sentía natural. 
+        </p>
+        <p>
+          Tengo que confesarte que estas respuestas las pensaba por muchas horas cuando tú hacías esa pregunta, y lo único que llegaba a mi cabeza era el cuándo. 
+          Quería confesarte todo esto cuando te pidiera ser mi novia de la forma que ambos pensábamos que era más normal, para poder mantener la pregunta de cama como algo bonito nada más. 
+        </p>
+        <p>
+          Te admiro mucho, por tu fuerza y resiliencia, por tu forma tan bonita de ver la vida y de ser. Esa energía caótica y contagiosa, las ganas de conocer y de aprender sobre los demás. 
+        </p>
+        <p>
+          El conjunto de todo esto es lo que me hacía decir "Te amo".
+        </p>
+      </div>
+
+      <!-- COLUMNA DERECHA — stickers / simbolos -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem; padding-top: 3rem;">
+
+        <!-- STICKER 4 -->
+        <div class="marco-sticker">
+          <img src="imagenes/Skinny.png" alt="Sticker 4" />
+          <span class="sticker-texto">Me recuerda a ti</span>
+        </div>
+
+        <!-- STICKER 5 -->
+        <div class="marco-sticker">
+          <img src="imagenes/IMG_5394.png" alt="Sticker 5" />
+          <span class="sticker-texto">Recuerdos</span>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- fin grid -->
+
+  </main>
+
+  <footer class="pie">
+    Sitio personal &mdash; 2025
+  </footer>
+
+  <script>
+    const boton = document.getElementById('botonMenu');
+    const panel = document.getElementById('panelMenu');
+
+    boton.addEventListener('click', function () {
+      const estaAbierto = panel.classList.toggle('abierto');
+      boton.classList.toggle('abierto', estaAbierto);
+      boton.setAttribute('aria-expanded', estaAbierto);
+    });
+
+    panel.querySelectorAll('a').forEach(function (enlace) {
+      enlace.addEventListener('click', function () {
+        panel.classList.remove('abierto');
+        boton.classList.remove('abierto');
+        boton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perdon</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       ENCABEZADO
+       ═══════════════════════════════════════ -->
+  <header class="encabezado">
+    <h1 class="encabezado__nombre-sitio">Nombre del Sitio</h1>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       BARRA DEL BOTON MENU
+       ═══════════════════════════════════════ -->
+  <div class="menu-barra">
+    <button class="menu__boton" id="botonMenu" aria-expanded="false" aria-controls="panelMenu">
+      Menu
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PANEL DEL MENU
+       ═══════════════════════════════════════ -->
+  <nav class="menu" id="panelMenu" role="navigation" aria-label="Navegacion principal">
+    <ul class="menu__lista">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="porque.html">Por que te ame</a></li>
+      <!-- "activo" marca la pagina actual -->
+      <li><a href="perdon.html" class="activo">Perdon</a></li>
+      <li><a href="explicaciones.html">Explicaciones</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       CUERPO
+       Mismo formato que "Por que te ame"
+       mas dos imagenes fotograficas a los lados
+       (en lugar de solo stickers)
+       ═══════════════════════════════════════ -->
+  <main class="cuerpo">
+
+    <!-- CAMBIA EL TITULO AQUI -->
+    <h2 class="titulo-pagina">Perdón</h2>
+
+    <!--
+      DISENO: IMAGENES FOTOGRAFICAS ASIMETRICAS A LOS COSTADOS
+      La columna izquierda es mas estrecha que la derecha
+      para generar asimetria armonica.
+    -->
+    <div style="
+      display: grid;
+      grid-template-columns: 200px 1fr 160px;
+      gap: 2rem;
+      align-items: start;
+    ">
+
+      <!-- COLUMNA IZQUIERDA — imagen fotografica + stickers opcionales -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem;">
+
+
+        <!-- Stickers opcionales bajo la imagen -->
+        <div class="marco-sticker">
+          <img src="imagenes/fruta.png" alt="Sticker" />
+          <span class="sticker-texto">Canción 1</span>
+        </div>
+
+        <div class="marco-sticker">
+          <img src="imagenes/Nollore.png" alt="Sticker" />
+          <span class="sticker-texto">Canción 3</span>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA CENTRAL — parrafo ~450 palabras -->
+      <div class="parrafo-contenido" style="padding: 0.5rem 0;">
+        <!-- CAMBIA EL TEXTO AQUI -->
+      <p>
+        Esta página es totalmente omitible, entiendo que sea mucho más complicado leer esto.
+      </p>
+      <p>
+        Así como te agradezco por lo bueno que compartimos, he intentado hacer retrospección en lo malo que pasamos, y no me nace más que pedirte perdón. 
+        Ahora me doy cuenta de que no fui la mejor versión de mí en esos momentos, que mi paciencia era muy corta la mayoría del tiempo y sé que muchas veces te hacía sentir muy juzgada. 
+        Quiero que sepas que no fue mi intención; solo creo que aprendí a amar de una forma muy rara y lo reflejé en nuestra relación, no juzgándote, sino motivándote de 
+        una forma muy rara a ser mejor porque sabía que también tienes un potencial gigante. 
+      </p>
+      <p>
+        Perdón por no hacer los esfuerzos que hacías tú, o porque no sintieras mis esfuerzos como suficientes. Perdón por no haberme interesado tanto en tu vida más personal, amigas y gustos. 
+        En su momento atravesé una fase en la que pensaba solo en ti y en mí, no en que lo que somos viene de nuestros gustos y de las personas que nos rodean. Perdón por guardar tantas cosas
+        como privadas, por no abrirme completamente a que me conocieras y pensar que estaba bien estar en esa postura y que tú querías lo mismo. 
+      </p>
+      <p>
+        Sobre todo te quiero pedir perdón por haberte dado una idea de mí distinta a quien fui en la relación. Quiero que sepas que siempre hice lo que consideraba lo mejor para los dos, aunque
+        casi siempre caí en el egoísmo al tomar estas decisiones. También te quiero pedir perdón por habernos relacionado tanto desde que regresaste a Monterrey; mi idea era mantener algo casual
+        y nunca te detuve al darme cuenta de que había sentimientos de nuevo, dejándome sentir lo mismo que tú, otra vez. De verdad lo siento por todos los sentimientos negativos que pude haberte causado los últimos meses. 
+      </p>
+      </div>
+
+      <!-- COLUMNA DERECHA — imagen fotografica -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem; padding-top: 4rem;">
+
+
+        <div class="marco-sticker">
+          <img src="imagenes/Primero.png" alt="Sticker" />
+          <span class="sticker-texto">Canción 2</span>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- fin grid -->
+
+  </main>
+
+  <footer class="pie">
+    Sitio personal &mdash; 2025
+  </footer>
+
+  <script>
+    const boton = document.getElementById('botonMenu');
+    const panel = document.getElementById('panelMenu');
+
+    boton.addEventListener('click', function () {
+      const estaAbierto = panel.classList.toggle('abierto');
+      boton.classList.toggle('abierto', estaAbierto);
+      boton.setAttribute('aria-expanded', estaAbierto);
+    });
+
+    panel.querySelectorAll('a').forEach(function (enlace) {
+      enlace.addEventListener('click', function () {
+        panel.classList.remove('abierto');
+        boton.classList.remove('abierto');
+        boton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CAMBIA EL TITULO DE LA PESTANA DEL NAVEGADOR -->
+  <title>Inicio</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       ENCABEZADO — nombre del sitio
+       ═══════════════════════════════════════ -->
+  <header class="encabezado">
+    <!-- CAMBIA EL NOMBRE DEL SITIO AQUI -->
+    <h1 class="encabezado__nombre-sitio">Nombre del Sitio</h1>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       BARRA DEL BOTON MENU
+       ═══════════════════════════════════════ -->
+  <div class="menu-barra">
+    <button class="menu__boton" id="botonMenu" aria-expanded="false" aria-controls="panelMenu">
+      Menu
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PANEL DEL MENU — oculto por defecto
+       Los 4 botones se reparten el ancho completo
+       ═══════════════════════════════════════ -->
+  <nav class="menu" id="panelMenu" role="navigation" aria-label="Navegacion principal">
+    <ul class="menu__lista">
+      <!-- Agrega la clase "activo" al link de la pagina actual -->
+      <li><a href="index.html"         class="activo">Inicio</a></li>
+      <li><a href="porque.html">Por que te ame</a></li>
+      <li><a href="perdon.html">Perdon</a></li>
+      <li><a href="explicaciones.html">Explicaciones</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       CUERPO — contenido de la pagina
+       ═══════════════════════════════════════ -->
+  <main class="cuerpo">
+
+    <!-- CAMBIA EL TITULO DE LA PAGINA AQUI -->
+    <h2 class="titulo-pagina">Inicio</h2>
+
+    <!--
+      DISENO ASIMETRICO CON 3 IMAGENES Y UN PARRAFO
+      Las imagenes estan distribuidas en una cuadricula de 3 columnas.
+      Ajusta los "grid-row" para cambiar las posiciones.
+    -->
+    <div style="
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 1.4rem;
+      align-items: start;
+    ">
+
+      <!-- IMAGEN 1 — columna izquierda, fila 1 -->
+      <div class="marco-imagen" style="grid-column: 1; grid-row: 1; height: 240px;">
+        <!-- Cambia src por la ruta de tu imagen, ejemplo: imagenes/foto1.jpg -->
+        <img src="imagenes/IMG_2130.jpg" alt="Foto 1" />
+      </div>
+
+      <!-- TITULO + PARRAFO — columna central, ocupa las 2 filas -->
+      <div style="grid-column: 2; grid-row: 1 / 3; display: flex; flex-direction: column; justify-content: center; padding: 0 1rem;">
+        <div class="parrafo-contenido">
+          <!-- CAMBIA EL TEXTO DEL PARRAFO AQUI (~250 palabras) -->
+          <p>
+            Fernanda, no sé cómo empezar una carta después de tanto tiempo, así que perdóname. Los últimos días he estado pensando mucho sobre ti, sobre mí y cómo es que las cosas pasaron. Quiero que quede claro desde este primer párrafo que esto no es con la intención de regresar, de que me dejes de odiar o algo similar; 
+            solo necesito sacarme las cosas del pecho y del cerebro. Creo que te mereces más de una explicación 
+            y espero que lo que pueda transmitir en estas cartas te sirva de algo. 
+          </p>
+          <p>
+            El último año ha sido el más raro de mi vida, desde adaptarme a los diagnósticos de TDA, de autismo y darme cuenta de quién soy, cómo funciono y qué es lo que en realidad quiero en la vida. Haber vivido la mayoría de estos cambios, momentos y primeras veces a tu lado es algo que me llena de alegría; 
+            son esos momentos los que se quedan conmigo. Te agradezco cada esfuerzo y cada minuto que te diste para compartir conmigo. Tal vez no todo salió como uno u otro idealizó, pero disfruté muchísimo. 
+          </p>
+          <p>
+            En la siguiente página te voy a contestar una duda en la que nunca quise profundizar. En mi cabeza quería reservarlo para un momento especial, pero ahora creo que ese momento ideal no va a llegar y no te quiero dejar con dudas. 
+          </p>
+        </div>
+      </div>
+
+      <!-- IMAGEN 2 — columna derecha, fila 1, mas alta -->
+      <div class="marco-imagen" style="grid-column: 3; grid-row: 1; height: 300px;">
+        <img src="imagenes/FullSizeRender.jpg" alt="Foto 2" />
+      </div>
+
+
+    </div>
+    <!-- fin del grid de imagenes -->
+
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       PIE DE PAGINA
+       ═══════════════════════════════════════ -->
+  <footer class="pie">
+    <!-- CAMBIA EL TEXTO DEL PIE AQUI -->
+    ASR &mdash; 2026
+  </footer>
+
+  <!-- ═══════════════════════════════════════
+       JAVASCRIPT — logica del boton de menu
+       No necesitas modificar este bloque
+       ═══════════════════════════════════════ -->
+  <script>
+    const boton = document.getElementById('botonMenu');
+    const panel = document.getElementById('panelMenu');
+
+    boton.addEventListener('click', function () {
+      const estaAbierto = panel.classList.toggle('abierto');
+      boton.classList.toggle('abierto', estaAbierto);
+      boton.setAttribute('aria-expanded', estaAbierto);
+    });
+
+    // Cerrar el menu al hacer clic en un enlace
+    panel.querySelectorAll('a').forEach(function (enlace) {
+      enlace.addEventListener('click', function () {
+        panel.classList.remove('abierto');
+        boton.classList.remove('abierto');
+        boton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>

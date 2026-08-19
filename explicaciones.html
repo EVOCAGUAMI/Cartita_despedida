@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explicaciones</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       ENCABEZADO
+       ═══════════════════════════════════════ -->
+  <header class="encabezado">
+    <h1 class="encabezado__nombre-sitio">Nombre del Sitio</h1>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       BARRA DEL BOTON MENU
+       ═══════════════════════════════════════ -->
+  <div class="menu-barra">
+    <button class="menu__boton" id="botonMenu" aria-expanded="false" aria-controls="panelMenu">
+      Menu
+    </button>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       PANEL DEL MENU
+       ═══════════════════════════════════════ -->
+  <nav class="menu" id="panelMenu" role="navigation" aria-label="Navegacion principal">
+    <ul class="menu__lista">
+      <li><a href="index.html">Inicio</a></li>
+      <li><a href="porque.html">Por que te ame</a></li>
+      <li><a href="perdon.html">Perdon</a></li>
+      <!-- "activo" marca la pagina actual -->
+      <li><a href="explicaciones.html" class="activo">Explicaciones</a></li>
+    </ul>
+  </nav>
+
+  <!-- ═══════════════════════════════════════
+       CUERPO — identico al formato de #2
+       ═══════════════════════════════════════ -->
+  <main class="cuerpo">
+
+    <!-- CAMBIA EL TITULO AQUI -->
+    <h2 class="titulo-pagina">Explicaciones</h2>
+
+    <!-- DISENO: STICKERS A LOS LADOS, PARRAFO AL CENTRO -->
+    <div style="
+      display: grid;
+      grid-template-columns: 180px 1fr 180px;
+      gap: 2rem;
+      align-items: start;
+    ">
+
+      <!-- COLUMNA IZQUIERDA — stickers -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem; padding-top: 1rem;">
+
+        <div class="marco-sticker">
+          <img src="imagenes/Mora.png" alt="Sticker 1" />
+          <span class="sticker-texto">Más canciones</span>
+        </div>
+
+        <div class="marco-sticker">
+          <img src="imagenes/omakase.png" alt="Sticker 2" />
+          <span class="sticker-texto">a ti, a nosotros</span>
+        </div>
+
+      </div>
+
+      <!-- COLUMNA CENTRAL — parrafo ~450 palabras -->
+      <div class="parrafo-contenido" style="padding: 0.5rem 0;">
+        <!-- CAMBIA EL TEXTO AQUI -->
+        <p>
+          No quiero ser muy pesado, lo mencioné en la página de inicio y tengo que decirte que haber vivido tantos cambios 
+          en tan poco tiempo, entre trabajo, graduaciones, proyectos, torneos y sucesos tan raros, me hacían tener mucha menos paciencia. 
+          Todo esto hacía que me quisiera encerrar en mi cuarto o mi casa con más frecuencia, salir menos y bueno, hacer detalles como este 
+          o como organizar salidas mucho menos. 
+        </p>
+        <p>
+          Tengo que confesarte que muchas veces me frené al confiar por detalles: lo que alguna vez platicamos del clasismo,
+          cosas que escuchaba de Arizpe, actitudes que veía en ti que no me gustaban. Siempre que algo así pasaba me daba miedo seguir; 
+          encontrar más detalles o cosas que me pudieran molestar de ti me hacía más cauteloso y eventualmente distante. 
+        </p>
+        <p>
+          También he pensado mucho en lo que alguna vez te dijo tu mamá, y realmente creo que pensamos de formas muy distintas, no solo en necesidades 
+          y gustos como dijimos en los últimos mensajes, sino en la ideología real que tenemos. La velocidad con la que siquiera hablamos de si queríamos o no 
+          casarnos me hizo dar un paso atrás. El saber que te querías casar y tan rápido también; no te culpo ni te recrimino, solo quería hacértelo saber. 
+        </p>
+        <p>
+          No sé si esto debería ir aquí o en la de perdón, pero cuando empezamos a salir no quería una relación sabiendo que tuve un trauma bastante fuerte en 
+          mi última relación, al grado que fue una de las razones por las que me fui de CDMX. Ahora sé cómo afrontar ese trauma o idea y lamento que haya sido a coste de nuestra relación. 
+        </p>
+        <p>
+          De verdad me encanta pasar tiempo contigo, pero sé que no es sano ni para ti ni para mí. El estar jugando al sí o no, no está padre a menos que los dos sepamos. No quiero lastimarte más, 
+          tampoco quiero volver a intentarlo, y creo que lo mejor es no hablar o hacerlo lo menos posible. Todavía no tengo certeza de qué pueda ser lo mejor, solo sé que tenía que 
+          externarte algunas cosas. 
+        </p>
+      </div>
+
+      <!-- COLUMNA DERECHA — stickers -->
+      <div style="display: flex; flex-direction: column; gap: 1.4rem; padding-top: 3rem;">
+
+        <div class="marco-sticker">
+          <img src="imagenes/JPN.png" alt="Sticker 4" />
+          <span class="sticker-texto">que me recuerdan</span>
+        </div>
+
+        <div class="marco-sticker">
+          <img src="imagenes/Balgame.png" alt="Sticker 5" />
+          <span class="sticker-texto">Gracias</span>
+        </div>
+
+      </div>
+
+    </div>
+    <!-- fin grid -->
+
+  </main>
+
+  <footer class="pie">
+    Sitio personal &mdash; 2025
+  </footer>
+
+  <script>
+    const boton = document.getElementById('botonMenu');
+    const panel = document.getElementById('panelMenu');
+
+    boton.addEventListener('click', function () {
+      const estaAbierto = panel.classList.toggle('abierto');
+      boton.classList.toggle('abierto', estaAbierto);
+      boton.setAttribute('aria-expanded', estaAbierto);
+    });
+
+    panel.querySelectorAll('a').forEach(function (enlace) {
+      enlace.addEventListener('click', function () {
+        panel.classList.remove('abierto');
+        boton.classList.remove('abierto');
+        boton.setAttribute('aria-expanded', 'false');
+      });
+    });
+  </script>
+
+</body>
+</html>
